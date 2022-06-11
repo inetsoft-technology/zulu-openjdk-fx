@@ -6,13 +6,13 @@ ARG ZULU_VER=8.62.0.19
 ARG ZULU_JAVA_VER=8.0.332
 
 RUN apt-get -qq update && \
-    apt-get -qq -y --no-install-recommends install locales curl tzdata && \
+    DEBIAN_FRONTEND=noninteractive apt-get -qq -y --no-install-recommends install locales curl tzdata ca-certificates && \
     echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
     locale-gen en_US.UTF-8 && \
     curl -sLO https://cdn.azul.com/zulu/bin/zulu${ZULU_VER}-ca-fx-jdk${ZULU_JAVA_VER}-linux_amd64.deb && \
     chmod a+rx zulu${ZULU_VER}-ca-fx-jdk${ZULU_JAVA_VER}-linux_amd64.deb && \
-    apt-get install -y --no-install-recommends zulu${ZULU_VER}-ca-fx-jdk${ZULU_JAVA_VER}-linux_amd64.deb \
-    apt-get -qq -y purge && \
+    apt-get install -y --no-install-recommends ./zulu${ZULU_VER}-ca-fx-jdk${ZULU_JAVA_VER}-linux_amd64.deb && \
+    apt-get -qq -y purge curl && \
     apt -y autoremove && \
     rm -rf /var/lib/apt/lists/* zulu${ZULU_VER}-ca-fx-jdk${ZULU_JAVA_VER}-linux_amd64.deb
 

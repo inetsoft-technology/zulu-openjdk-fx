@@ -7,5 +7,5 @@ Azul Zulu is covered by its [Terms of Use](https://www.azul.com/products/core/op
 ## Usage
 
 ```shell
-docker run -it --rm ghcr.io/inetsoft-technology/zulu-openjdk-fx:8 java --version
+docker run -it --rm ghcr.io/inetsoft-technology/zulu-openjdk-fx:8 java -version
 ```
